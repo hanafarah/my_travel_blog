@@ -62,3 +62,34 @@ class Topic(models.Model):
 
     class Meta:
         ordering = ['name']
+
+class Comment(models.Model):
+    APPROVED = 'approved'
+    REJECTED = 'rejected'
+
+    APPROVED_CHOICES = [
+        (APPROVED, 'approved'),
+        (REJECTED, 'rejected')
+
+    ]
+
+    name = models.CharField(max_length=50, null=False)
+    email = models.EmailField(max_length=100, null=False)
+    post = models.ForeignKey(Post, related_name='comments', null=False, on_delete=models.CASCADE)
+    text = models.TextField(null=False)
+
+    approved = models.CharField(
+        max_length=10,
+        choices=APPROVED_CHOICES,
+        default=REJECTED,
+        help_text='Set to "approved" to make this post publicly visible',
+    )
+
+    created = models.DateTimeField(auto_now_add=True)  # Sets on create
+    updated = models.DateTimeField(auto_now=True)  # Updates on each save
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return f"Comment by {self.name} on '{self.post.title}'"
