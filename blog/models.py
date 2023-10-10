@@ -1,9 +1,16 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-# from django.contrib.auth.models import User
 
 # Create your models here.
+
+class PostQuerySet(models.QuerySet):
+    def published(self):
+        return self.filter(status=self.model.PUBLISHED)
+
+    def drafts(self):
+        return self.filter(status=self.model.DRAFT)
+
 class Post(models.Model):
     DRAFT = 'draft'
     PUBLISHED = 'published'
@@ -40,6 +47,8 @@ class Post(models.Model):
         unique_for_date='published',  # Slug is unique for publication date
     )
     topics = models.ManyToManyField('Topic', related_name='posts')
+    objects = PostQuerySet.as_manager()
+
     class Meta:
         ordering = ['-created']
 
@@ -49,7 +58,6 @@ class Post(models.Model):
     def publish(self):
         self.status = self.PUBLISHED
         self.published = timezone.now()
-
 
 class Topic(models.Model):
     name = models.CharField(max_length=355,
@@ -94,6 +102,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.name} on '{self.post}'"
+
+
 
 
 
