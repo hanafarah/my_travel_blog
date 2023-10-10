@@ -24,7 +24,7 @@ class CommentInline(admin.TabularInline):
     extra = 0
 
 
-
+#register the models created
 admin.site.register(Post, PostAdmin)
 admin.site.register(Topic,TopicAdmin)
 admin.site.register(Comment, CommentAdmin)
