@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ('title','author__username','author__first_name','author__last_name')
     list_filter = ('status', 'topics',)
     prepopulated_fields = {'slug': ('title',)}
-    # inlines = (CommentInline)
+
 
 class TopicAdmin(admin.ModelAdmin):
     list_display = ('name','slug')
@@ -17,11 +17,10 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'text', 'created_on','updated_on','approved')
     list_filter = ('approved',)
     search_fields = ('name', 'email', )
-    readonly_fields = ('name', 'text', 'email', 'approved',)
 
 class CommentInline(admin.TabularInline):
     model = Comment
-    readonly_fields = ('name', 'text', 'email', 'approved', )
+    readonly_fields = ('name', 'text', 'email',)
     extra = 0
 
 
