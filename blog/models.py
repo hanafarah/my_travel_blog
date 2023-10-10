@@ -60,8 +60,7 @@ class Post(models.Model):
         self.published = timezone.now()
 
 class Topic(models.Model):
-    name = models.CharField(max_length=355,
-        unique=True)
+    name = models.CharField(max_length=355, unique=True)
 
     slug = models.SlugField(unique=True)
 
@@ -85,7 +84,6 @@ class Comment(models.Model):
     email = models.EmailField(max_length=100, null=False)
     post = models.ForeignKey(Post, related_name='comments', null=False, on_delete=models.CASCADE)
     text = models.TextField(null=False)
-    post = models.ForeignKey('Post', related_name='comments', null=False, on_delete=models.CASCADE)
 
     approved = models.CharField(
         max_length=10,
@@ -102,8 +100,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment by {self.name} on '{self.post}'"
-
-
-
-
 

@@ -3,18 +3,18 @@ from . models import Topic, Post
 from .models import Comment
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author','created','updated','status',)
-    search_fields = ('title','author__username','author__first_name','author__last_name')
+    list_display = ('title', 'author', 'created', 'updated', 'status',)
+    search_fields = ('title','author__username', 'author__first_name', 'author__last_name')
     list_filter = ('status', 'topics',)
     prepopulated_fields = {'slug': ('title',)}
 
 
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ('name','slug')
+    list_display = ('name', 'slug')
     prepopulated_fields = {'slug': ('name',)}
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'text', 'created_on','updated_on','approved')
+    list_display = ('name', 'email', 'text', 'created_on', 'updated_on', 'approved')
     list_filter = ('approved',)
     search_fields = ('name', 'email', )
 
