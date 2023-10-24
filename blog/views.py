@@ -19,4 +19,6 @@ def post_lists(request):
 
 def sidebar_topics(request):
     topics = Topic.objects.annotate(Count('post')).order_by('-post_count')[:10]
-    return render(request, 'sidebar.html', {'topics': topics})
+    return render(request, 'blog/base.html', {'topics': topics})
+
+
