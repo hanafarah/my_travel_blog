@@ -67,8 +67,13 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    def get_topic_list():
+        return Topic.objects.all()
+
     class Meta:
         ordering = ['name']
+
+
 
 class Comment(models.Model):
     APPROVED = 'approved'
