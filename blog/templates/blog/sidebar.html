@@ -1,0 +1,10 @@
+<div id="sidebar">
+    <h2>Popular Topics</h2>
+    <ul>
+        {% for topic in topics %}
+            <li>
+                {{ topic.name }} ({{ topic.post_count }} posts)
+            </li>
+        {% endfor %}
+    </ul>
+</div>

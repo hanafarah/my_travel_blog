@@ -19,9 +19,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from . import views
+from blog import views   # Import the views module
 
 urlpatterns = [
-    path('', views.index),
     path('admin/', admin.site.urls),
+    path('', views.post_lists, name='post_list'),
+    path('', views.sidebar_topics, name='sidebar_topics'),
 ]
