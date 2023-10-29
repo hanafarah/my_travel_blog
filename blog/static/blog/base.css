@@ -17,7 +17,7 @@ body {
  * and unvisited links. Show underline on hover only.
  */
 a {
-  color: #0366d6;
+  color: #036d6;
   text-decoration: none;
 }
 
@@ -63,7 +63,7 @@ a:hover {
 
 /* Style the main content */
 #main-content {
-  margin-top: 1rem;
+  margin-top: 2rem;
   display: grid;
   grid-template-columns: auto 200px;
 
