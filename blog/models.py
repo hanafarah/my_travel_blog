@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+
 # Create your models here.
 
 class PostQuerySet(models.QuerySet):
@@ -10,6 +11,8 @@ class PostQuerySet(models.QuerySet):
 
     def drafts(self):
         return self.filter(status=self.model.DRAFT)
+
+
 
 class Post(models.Model):
     DRAFT = 'draft'

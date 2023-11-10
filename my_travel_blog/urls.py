@@ -24,5 +24,7 @@ from blog import views   # Import the views module
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.post_lists, name='post_list'),
+    path('', views.home, name='home'),
     path('', views.sidebar_topics, name='sidebar_topics'),
+
 ]

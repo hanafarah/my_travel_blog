@@ -4,13 +4,15 @@ from . models import Post, Topic
 from django.utils import timezone
 from django.db.models import Count
 
+
+
 # Create your views here.
 def home(request):
     """
     The Blog homepage
     """
     latest_posts = Post.objects.published().order_by('-published')[:2]
-    topics = Topic.objects.all()
+    topics = Topic.objects.annotate(Count('post')).order_by('name')[:10]
     context = {
         'topics': topics,
         'latest_posts': latest_posts,
